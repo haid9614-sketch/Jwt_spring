@@ -44,6 +44,15 @@ public class JwtUtils {
                 .getBody()
                 .getSubject();
     }
+    // ham boc full name
+    public String getFullNameFromToken(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(getSignKey()) // tu truyen key vao de kiem tra key
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
+                .get("fullName", String.class);
+    }
     // boc role
     public String getRoleFromToken(String token) {
         return Jwts.parserBuilder()
